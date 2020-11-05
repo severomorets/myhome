@@ -27,6 +27,11 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/myhome/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
@@ -45,7 +50,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1604589670169</updated>
-      <workItem from="1604589671225" duration="13081000" />
+      <workItem from="1604589671225" duration="13513000" />
     </task>
     <servers />
   </component>
