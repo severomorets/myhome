@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+</head>
+<body>
+<button onclick="getSensorTemplateLength()">get sensor template length</button>
+<div>
+    <h3>STATUS</h3>
+    <span id="statuses_board1">board1</span>
+    <span id="statuses_finger1">finger1</span>
+</div>
+<div>
+    <h3>EVENTS</h3>
+    <span style="font-size: 12px;color:#5e5e5e" class="events">
+
+    </span>
+
+</div>
+</body>
+</html>
+<script>
+    let color = '#d74949';
+    class home{
+        status = function(data){
+            document.getElementById('statuses_board1').style.backgroundColor = data.statuses.board1==1?'#31E524':'#D74949'
+            document.getElementById('statuses_finger1').style.backgroundColor = data.statuses.finger1==1?'#31E524':'#D74949'
+        }
+        events = function(data){
+            $('.events').prepend(`<div>${data.sensor}  ${data.value}</div>`)
+            // document.getElementById('statuses_board1').style.backgroundColor = data.statuses.board1==1?'#31E524':'#D74949'
+            // document.getElementById('statuses_finger1').style.backgroundColor = data.statuses.finger1==1?'#31E524':'#D74949'
+        }
+
+    }
+    let HOME = new home()
+    ws = new WebSocket ('ws://localhost:8080');
+    ws.onopen = function () {
+        console.log("CONNECT")
+    }
+    ws.onmessage = function (message) {
+
+        data = JSON.parse(message.data)
+        console.log(`[IN] ${data.method}`,data.data)
+        HOME[data.method](data.data)
+    }
+    function getSensorTemplateLength(){
+        ws.send(JSON.stringify({
+            method:'getSensorTemplateLength',
+            data:{}
+        }))
+    }
+
+</script>
