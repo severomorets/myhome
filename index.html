@@ -6,7 +6,11 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
 </head>
 <body>
-<button onclick="getSensorTemplateLength()">get sensor template length</button>
+<div>
+    <button onclick="getSensorTemplateLength()">get sensor template length</button>
+    <span id="request_getSensorTemplateLength"></span>
+</div>
+
 <div>
     <h3>STATUS</h3>
     <span id="statuses_board1">board1</span>
@@ -30,6 +34,11 @@
         }
         events = function(data){
             $('.events').prepend(`<div>${data.sensor}  ${data.value}</div>`)
+            // document.getElementById('statuses_board1').style.backgroundColor = data.statuses.board1==1?'#31E524':'#D74949'
+            // document.getElementById('statuses_finger1').style.backgroundColor = data.statuses.finger1==1?'#31E524':'#D74949'
+        }
+        request = function(data){
+            $(`#request_${data.request}`).html(`${data.value}`)
             // document.getElementById('statuses_board1').style.backgroundColor = data.statuses.board1==1?'#31E524':'#D74949'
             // document.getElementById('statuses_finger1').style.backgroundColor = data.statuses.finger1==1?'#31E524':'#D74949'
         }

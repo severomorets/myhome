@@ -1,0 +1,56 @@
+{
+  "users": [
+    {
+      "name": "busorgin",
+      "id": 1
+    }
+  ],
+  "config": {
+    "fingerSensor": [
+
+    ],
+    "light": [
+      {
+        "name": "Кухня",
+        "sensorPin": 22,
+        "relayPin": 23,
+        "status": false
+      },{
+        "name": "коридор",
+        "sensorPin": 24,
+        "relayPin": 25,
+        "status": false
+      },{
+        "name": "комната",
+        "sensorPin": 26,
+        "relayPin": 27,
+        "status": false
+      },{
+        "name": "туалет",
+        "sensorPin": 28,
+        "relayPin": 29,
+        "status": false
+      },{
+        "name": "беседка",
+        "sensorPin": 30,
+        "relayPin": 31,
+        "status": false
+      },{
+        "name": "комната 2",
+        "sensorPin": 32,
+        "relayPin": 33,
+        "status": false
+      },{
+        "name": "комната 3",
+        "sensorPin": 34,
+        "relayPin": 35,
+        "status": false
+      },{
+        "name": "балкон",
+        "sensorPin": 36,
+        "relayPin": 37,
+        "status": false
+      }
+    ]
+  }
+}

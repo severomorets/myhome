@@ -1,9 +1,15 @@
 const SerialPort = require('serialport');
 const Readline = require('@serialport/parser-readline');
-const port = new SerialPort('/dev/ttyUSB1', { baudRate: 9600 });
+// const port = new SerialPort('/dev/ttyUSB1', { baudRate: 9600 });
+const port = new SerialPort('COM3', { baudRate: 9600 });
 const parser = port.pipe(new Readline({ delimiter: '\n' }));
 const WebSocket = require('ws');
 const wss = new WebSocket.Server({ port: 8080 });
+const fs = require('fs');
+var CONFIG = JSON.parse(fs.readFileSync('db/db.json', 'utf8'));
+// fs.writeFileSync("db/db.json",JSON.stringify(obj));
+
+
 wss.broadcast = function broadcast(msg) {
     wss.clients.forEach(function each(client) {
         client.send(msg);
@@ -61,8 +67,11 @@ parser.on('data', data =>{
             break;
         case 'request':
             wss.broadcast(JSON.stringify({
-                method:m[1],
-                data:m[2]
+                method:m[0],
+                data:{
+                    request:m[1],
+                    value:m[2]
+                }
             }));
             console.log(data.yellow);
             break;
@@ -81,6 +90,10 @@ wss.on('connection', function connection(ws) {
         method:'status',
         data:HOME
     }));
+  wss.broadcast(JSON.stringify({
+    method:'config',
+    data:CONFIG
+  }));
     ws.on('message', function incoming(message) {
         data = JSON.parse(message)
         if (HOME.hasOwnProperty(data.method)){

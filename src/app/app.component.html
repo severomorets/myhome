@@ -1,0 +1,34 @@
+<div *ngIf="ds.CONFIG.config">
+
+
+<table class="main_table">
+  <tr>
+    <td style="width: 100px">
+      <div (click)="page = ('main')" class="btnMenu">Main</div>
+      <div (click)="page = ('light')" class="btnMenu">Light</div>
+      <div (click)="page = ('access')" class="btnMenu">Access </div>
+    </td>
+    <td style="width: 1000px;">
+      <h3>{{page}}</h3>
+      <div *ngIf="page=='main'">
+
+      </div>
+      <div *ngIf="page=='light'">
+        <div *ngFor="let light of ds.CONFIG.config.light">
+          <button [ngClass]="{'on':light.status,'off':light.status}">{{light.name}}</button>
+        </div>
+
+      </div>
+      <div *ngIf="page=='access'">
+
+      </div>
+    </td>
+  </tr>
+</table>
+<div class="statuses">
+  <hr>
+  <span  id="statuses_board1">statuses_board1</span>
+  <span id="statuses_finger1">statuses_finger1</span>
+</div>
+
+</div>

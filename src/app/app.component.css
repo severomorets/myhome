@@ -1,0 +1,12 @@
+.main_table td{
+  border: 1px solid black;
+  padding: 5px;
+  vertical-align: top;
+}
+.btnMenu{
+  cursor: pointer;
+}
+.statuses span{
+  padding: 3px;
+  margin: 10px;
+}
