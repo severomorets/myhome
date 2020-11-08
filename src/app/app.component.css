@@ -10,3 +10,9 @@
   padding: 3px;
   margin: 10px;
 }
+.on{
+  background-color: #19f500;
+}
+.off{
+  background-color: #ff0505;
+}

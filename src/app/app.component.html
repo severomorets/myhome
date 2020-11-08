@@ -1,34 +1,47 @@
-<div *ngIf="ds.CONFIG.config">
+<div *ngIf="ds.LOAD">
 
 
-<table class="main_table">
-  <tr>
-    <td style="width: 100px">
-      <div (click)="page = ('main')" class="btnMenu">Main</div>
-      <div (click)="page = ('light')" class="btnMenu">Light</div>
-      <div (click)="page = ('access')" class="btnMenu">Access </div>
-    </td>
-    <td style="width: 1000px;">
-      <h3>{{page}}</h3>
-      <div *ngIf="page=='main'">
+  <table class="main_table">
+    <tr>
+      <td style="width: 100px">
+        <div (click)="page = ('main')" class="btnMenu">Main</div>
+        <div (click)="page = ('light')" class="btnMenu">Light</div>
+        <div (click)="page = ('access')" class="btnMenu">Access </div>
+      </td>
+      <td style="width: 1000px;">
+        <h3>{{page}}</h3>
+        <div *ngIf="page=='main'">
 
-      </div>
-      <div *ngIf="page=='light'">
-        <div *ngFor="let light of ds.CONFIG.config.light">
-          <button [ngClass]="{'on':light.status,'off':light.status}">{{light.name}}</button>
         </div>
+        <div *ngIf="page=='light'">
+          <div *ngFor="let light of ds.CONFIG.light">
+            <button (click)="setLight(light.id)" [ngClass]="{'on':light.status,'off':!light.status}">{{light.name}}</button>
+          </div>
 
-      </div>
-      <div *ngIf="page=='access'">
-
-      </div>
-    </td>
-  </tr>
-</table>
-<div class="statuses">
+        </div>
+        <div *ngIf="page=='access'">
+            <div *ngFor="let user of ds.CONFIG.users">
+              {{user.name}}  {{user.id}}
+            </div>
+          <button (click)="createUser=!createUser">Создать порльзователя</button>
+          <div *ngIf="createUser">
+            <input type="text" placeholder="name" [(ngModel)]="username">
+            <input type="text" placeholder="id" [(ngModel)]="userId">
+            <button (click)="createNewUser()">save</button>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <div class="statuses" >
+    <hr>
+    <span [ngClass]="{'on':ds.STATUS.board1==1,'off':ds.STATUS.board1==0}" >statuses_board1</span>
+    <span [ngClass]="{'on':ds.STATUS.finger1==1,'off':ds.STATUS.finger1==0}" id="statuses_finger1">statuses_finger1</span>
+  </div>
+<div>
   <hr>
-  <span  id="statuses_board1">statuses_board1</span>
-  <span id="statuses_finger1">statuses_finger1</span>
-</div>
+  EVENTS
 
+  <div *ngFor="let e of ds.EVENTS">{{e}}</div>
+</div>
 </div>

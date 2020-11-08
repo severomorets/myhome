@@ -7,14 +7,22 @@ import {DataService} from "./service/data.service";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  page = 'light';
+  page = 'access';
+  createUser = false
+  username = 'eeee'
+  userId = '2'
   constructor(public ds:DataService) {
   }
   ngOnInit(){
 
   }
-  toggleLight(pin){
-
+  createNewUser(){
+    this.ds.send('createUser',{name:this.username,id:this.userId})
   }
-
+  setLight(id){
+    this.ds.send('setLight',{id:id})
+  }
+  opendoor(id){
+    // this.ds.send('setLight',{id:id})
+  }
 }
